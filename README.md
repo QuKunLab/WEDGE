@@ -134,4 +134,4 @@ Now, The last thing you have to do is to invoke the `WEDGE_recovery()` function.
 ```
 
 ### Help
-If you have any questions or require assistance using MAGIC, please contact us: hyl2016@mail.ustc.edu.cn .
+If you have any questions or require assistance using WEDGED, please contact us: hyl2016@mail.ustc.edu.cn .
