@@ -7,6 +7,7 @@
     - [Tutorial](#tutorial)
         - [Preprocessing](#preprocessing)
         - [Imputation](#imputation)
+    - [Help](#help)
 <!-- TOC -->
 
 
@@ -132,3 +133,5 @@ Now, The last thing you have to do is to invoke the `WEDGE_recovery()` function.
 [W,H]= WEDGE_recovery(input_path,output_path,output_format,normalization, options);
 ```
 
+### Help
+If you have any questions or require assistance using MAGIC, please contact us: hyl2016@mail.ustc.edu.cn .
