@@ -4,8 +4,8 @@ library(Seurat)
 library(ggplot2)
 setwd("G:/MySoftware/Imputation/WEDGE/Data/Zeisel")
 
-dropout_name = 'ref';
-dropout_name = 'Zeisel';
+dropout_name = 'reference';
+dropout_name = 'Observed';
 dropout_name = 'WEDGE_recovery';
 
 
@@ -21,17 +21,7 @@ ref_pbmc <- ScaleData(object = ref_pbmc, features = all.genes)
 ref_label <- read.csv('./Label.csv',header= 1)
 Idents(ref_pbmc) <- ref_label
 
-#ref_pbmc <- RunPCA(object = ref_pbmc,npcs = 50, features = all.genes)
-
-#ref_pbmc <- FindNeighbors(ref_pbmc, dims = 1:50)
-#ref_pbmc <- FindClusters(ref_pbmc)
-#NMI(as.vector(unlist(ref_label)),as.vector(ref_pbmc@active.ident))
-#ARI(as.vector(unlist(ref_label)),as.vector(ref_pbmc@active.ident))
-
-
-#ref_pbmc <- RunTSNE(object = ref_pbmc, dims = 1:20)
-#DimPlot(object = ref_pbmc, reduction = "tsne")
-if(dropout_name == 'ref')
+if(dropout_name == 'reference')
 {
   ref_pbmc.markers <- FindAllMarkers(object = ref_pbmc, only.pos = TRUE, min.pct = 0.1, logfc.threshold = 0.25)
   
