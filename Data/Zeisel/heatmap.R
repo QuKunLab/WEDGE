@@ -1,3 +1,4 @@
+
 library(dplyr)
 library(Seurat)
 library(ggplot2)
@@ -13,9 +14,9 @@ ref_pbmc <- CreateSeuratObject(counts = ref_data, project = "ref", min.cells = 1
 if(dropout_name != 'WEDGE_recovery')
 {
   ref_pbmc <- NormalizeData(object = ref_pbmc, normalization.method = "LogNormalize", scale.factor = 10000)
-  all.genes <- rownames(x = ref_pbmc)
-  ref_pbmc <- ScaleData(object = ref_pbmc, features = all.genes)
 }
+all.genes <- rownames(x = ref_pbmc)
+ref_pbmc <- ScaleData(object = ref_pbmc, features = all.genes)
 
 ref_label <- read.csv('./Label.csv',header= 1)
 Idents(ref_pbmc) <- ref_label
