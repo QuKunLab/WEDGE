@@ -24,7 +24,7 @@ If you are familiar with MATLAB, then please skip this section and view the [Com
 | ------------- | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
 | Version_1.0.1 | [64-bit](http://galaxy.ustc.edu.cn:30803/liunianping/WEDGE/WEDGE_windows_1.0.1.exe) | [64-bit](http://galaxy.ustc.edu.cn:30803/liunianping/WEDGE/WEDGE_linux_1.0.1.zip) | [64-bit](http://galaxy.ustc.edu.cn:30803/liunianping/WEDGE/WEDGE_MacOS_1.0.1.zip) |
 
-- Windows & Mac: Double-click the installer to installing WEDGE and select the default options for each step.
+- Windows & Mac: Double-click the installer to install WEDGE and select the default options for each step.
 
 - Linux: If you have version 9.6 of the MATLAB Runtime installed in /mathworks/home/application/v96,run the shell script as:
 
