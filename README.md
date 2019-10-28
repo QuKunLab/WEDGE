@@ -40,11 +40,12 @@ If you are familiar with MATLAB, then please skip this section and view the [Com
 
 
 > Note: If you want to use WEDGE in Linux without desktop, please use MATLAB source code of WEDGE and view [Command-Line Tutorial](#Command-Line-Tutorial).
-APP Interface:
 ### GUI Tutorial
 <div align=center>
 <img src= './images/UI.png'  width="95%" height="50%"  />
 </div>
+
+> Note: If you want to use WEDGE to impute 10x data, you must select three files `matrix.mtx` , `barcodes.tsv` and `genes.tsv` at the same time.
 
 ### Command-Line Tutorial
 
