@@ -1,10 +1,9 @@
 
-
-
 <!-- TOC -->
 - [WEDGE](#wedge)
     - [Installation](#installation)
-    - [Tutorial](#tutorial)
+    - [GUI Tutorial](#gui-tutorial)
+    - [Command-Line Tutorial](#command-line-tutorial)
         - [Preprocessing](#preprocessing)
         - [Imputation](#imputation)
     - [Help](#help)
@@ -19,13 +18,13 @@ WEDGE is a weighted low-rank matrix completion algorithm for recovering  scRNA-s
 
 ### Installation
 
-If you are familiar with MATLAB, then please skip this section and view the [Command-Line Tutorial](#Tutorial). If not, we also provide GUI version below:
+If you are familiar with MATLAB, then please skip this section and view the [Command-Line Tutorial](#Command-Line-Tutorial). If not, we also provide GUI version below:
 
 | WEDGE Release | Windows    | Linux desktop     | Mac                         |
 | ------------- | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
 | Version_1.0.1 | [64-bit](http://galaxy.ustc.edu.cn:30803/liunianping/WEDGE/WEDGE_windows_1.0.1.exe) | [64-bit](http://galaxy.ustc.edu.cn:30803/liunianping/WEDGE/WEDGE_linux_1.0.1.zip) | [64-bit](http://galaxy.ustc.edu.cn:30803/liunianping/WEDGE/WEDGE_MacOS_1.0.1.zip) |
 
-- Windows & Mac: Double-click the installer to start installing WEDGE and select the default options for each step.
+- Windows & Mac: Double-click the installer to installing WEDGE and select the default options for each step.
 
 - Linux: If you have version 9.6 of the MATLAB Runtime installed in /mathworks/home/application/v96,run the shell script as:
 
@@ -40,25 +39,14 @@ If you are familiar with MATLAB, then please skip this section and view the [Com
   ```
 
 
-> Note: If you want to use WEDGE in Linux without desktop, please use MATLAB source code of WEDGE and view [Tutorial](#Tutorial).
+> Note: If you want to use WEDGE in Linux without desktop, please use MATLAB source code of WEDGE and view [Command-Line Tutorial](#Command-Line-Tutorial).
 APP Interface:
-
+### GUI Tutorial
 <div align=center>
 <img src= './images/UI.png'  width="95%" height="50%"  />
 </div>
 
-
-
-> Note: The [MATLAB Runtime](https://ww2.mathworks.cn/products/compiler/matlab-runtime.html) is need for WEDGE，and R2019a and later versions are suitable. You can install MATLAB Runtime before installing WEDGE or install it automatically during the installation of WEDGE. 
->
-> | Release (MATLAB Runtime Version) | Windows                                                      | Linux                                                        | Mac                                                          |
-> | :------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-> | R2019b (9.7)                     | [64-bit](http://ssd.mathworks.com/supportfiles/downloads/R2019b/Release/0/deployment_files/installer/complete/win64/MATLAB_Runtime_R2019b_win64.zip) | [64-bit](http://ssd.mathworks.com/supportfiles/downloads/R2019b/Release/0/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2019b_glnxa64.zip) | [Intel 64-bit](http://ssd.mathworks.com/supportfiles/downloads/R2019b/Release/0/deployment_files/installer/complete/maci64/MATLAB_Runtime_R2019b_maci64.dmg.zip) |
-> | R2019a (9.6)                     | [64-bit](https://ssd.mathworks.com/supportfiles/downloads/R2019a/Release/5/deployment_files/installer/complete/win64/MATLAB_Runtime_R2019a_Update_5_win64.zip) | [64-bit](https://ssd.mathworks.com/supportfiles/downloads/R2019a/Release/5/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2019a_Update_5_glnxa64.zip) | [Intel 64-bit](https://ssd.mathworks.com/supportfiles/downloads/R2019a/Release/5/deployment_files/installer/complete/maci64/MATLAB_Runtime_R2019a_Update_5_maci64.dmg.zip) |
-
-
-
-### Tutorial
+### Command-Line Tutorial
 
 ##### Preprocessing
 

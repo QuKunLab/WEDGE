@@ -15,9 +15,9 @@ import scipy.sparse as ss
 import warnings
 import itertools
 warnings.filterwarnings('ignore')
-path = './figure1/'
-data_name = [path +'truecounts',path+'Observed',path+'WEDGE_recovery']
-labels_true = pd.read_csv(path+"trueLabel.csv",header=0, index_col=None)
+path = './Figure1/'
+data_name = [path +'Reference',path+'Observed',path+'WEDGE_recovery']
+labels_true = pd.read_csv(path+"cellType.csv",header=0, index_col=None)
 labels_true = np.squeeze(labels_true.values, axis=1)
 labels_true = pd.Categorical(labels_true)
 labels_true0 = labels_true

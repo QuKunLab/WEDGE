@@ -7,14 +7,14 @@ function calculate_CMD
     Mark_gene = xlsread(['./',Data_set{index_data},'/Mark_gene.csv']);
     Mark_gene =  Mark_gene(:,2);
     
-    ID = importdata(['./',Data_set{index_data},'/ref.csv'],',',1);
+    ID = importdata(['./',Data_set{index_data},'/Reference.csv'],',',1);
     ID.data=  ID.data .*  repmat(10000./(sum( ID.data) + 0.000000001),size( ID.data,1) ,1);  
     ID.data = log( ID.data + 1);
 
     [ref_cell_wise ,ref_gene_wise]= coeff(ID.data(Mark_gene>0,:));  
 
     
-    ID = importdata(['./',Data_set{index_data},'/',Data_set{index_data},'.csv'],',',1);
+    ID = importdata(['./',Data_set{index_data},'/','Observed.csv'],',',1);
     init = ID.data;
     init = init .*  repmat(10000./(sum(init) + 0.000000001),size(init,1) ,1); 
     init = log(init + 1);

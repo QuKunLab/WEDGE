@@ -17,9 +17,9 @@ import itertools
 warnings.filterwarnings('ignore')
 dataName = 'Baron'
 path = './'+ dataName
-data_name = ['reference.csv','Observed.csv','WEDGE_recovery.csv']
+data_name = ['Reference.csv','Observed.csv','WEDGE_recovery.csv']
 
-labels_true = pd.read_csv(path+'/Label.csv',header=0, index_col=None)
+labels_true = pd.read_csv(path+'/cellType.csv',header=0, index_col=None)
 labels_true = np.squeeze(labels_true.values, axis=1)
 labels_true = pd.Categorical(labels_true)
 labels_true0 = labels_true

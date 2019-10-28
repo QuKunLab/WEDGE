@@ -8,14 +8,14 @@ index_data =2;
 Mark_gene = xlsread(['.\',Data_set{index_data},'\Mark_gene.csv']);
 Mark_gene(:,2) = Mark_gene(:,2);
 
-    ID = importdata(['./',Data_set{index_data},'/ref.csv'],',',1);
+    ID = importdata(['./',Data_set{index_data},'/Reference.csv'],',',1);
     ref = ID.data;
 
     ref = ref .*  repmat(10000./(sum(ref) + 0.000000001),size(ref,1) ,1); 
     ref = log(ref + 1);
     ref = ref(Mark_gene(:,2)>0,:);
     
-    ID = importdata(['./',Data_set{index_data},'/',Data_set{index_data},'.csv'],',',1);
+    ID = importdata(['./',Data_set{index_data},'/','Observed.csv'],',',1);
     init = ID.data;
     init = init .*  repmat(10000./(sum(init) + 0.000000001),size(init,1) ,1); 
     init = log(init + 1);

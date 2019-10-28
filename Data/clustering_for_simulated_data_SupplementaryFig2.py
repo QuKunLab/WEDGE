@@ -10,8 +10,8 @@ from scanpy import AnnData
 from sklearn import metrics
 import warnings
 warnings.filterwarnings('ignore')
-path = './SF2/'
-data_name = ['truecounts','Observed','WEDGE_recovery']
+path = './SupplementaryFig2/'
+data_name = ['Reference','Observed','WEDGE_recovery']
 # data_ID = 3
 geneinfo = pd.read_csv(path+'geneinfo.csv',header=0, index_col=0)
 

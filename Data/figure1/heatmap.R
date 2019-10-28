@@ -1,9 +1,9 @@
 library(dplyr)
 library(Seurat)
 library(ggplot2)
-setwd("H:/WEDGE-master/Data/SF2/")
+setwd("./")
 
-dropout_name = 'truecounts';
+dropout_name = 'Reference';
 dropout_name = 'Observed';
 dropout_name = 'WEDGE_recovery';
 
@@ -18,9 +18,9 @@ all.genes <- rownames(x = ref_pbmc)
 ref_pbmc <- ScaleData(object = ref_pbmc, features = all.genes)
 
 
-ref_label <- read.csv('./trueLabel.csv')
+ref_label <- read.csv('./cellType.csv')
 Idents(ref_pbmc) <- ref_label
-if(dropout_name == 'truecounts')
+if(dropout_name == 'Reference')
 {
   ref_pbmc.markers <- FindAllMarkers(object = ref_pbmc, only.pos = TRUE, min.pct = 0.1, logfc.threshold = 0.15)
   

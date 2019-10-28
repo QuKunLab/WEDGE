@@ -1,9 +1,9 @@
 library(dplyr)
 library(Seurat)
 library(ggplot2)
-setwd("G:/MySoftware/Imputation/WEDGE/Data/Baron")
+setwd("./")
 
-dropout_name = 'reference';
+dropout_name = 'Reference';
 dropout_name = 'Observed';
 dropout_name = 'WEDGE_recovery';
 
@@ -17,10 +17,10 @@ all.genes <- rownames(x = ref_pbmc)
 ref_pbmc <- ScaleData(object = ref_pbmc, features = all.genes)
 
 
-ref_label <- read.csv('./Label.csv',header= 1)
+ref_label <- read.csv('./cellType.csv',header= 1)
 Idents(ref_pbmc) <- ref_label
 
-if(dropout_name == 'reference')
+if(dropout_name == 'Reference')
 {
 ref_pbmc.markers <- FindAllMarkers(object = ref_pbmc, only.pos = TRUE, min.pct = 0.1, logfc.threshold = 0.25)
 top10 <- ref_pbmc.markers %>% group_by(cluster) %>% top_n(n = 20, wt = avg_logFC)
