@@ -1,4 +1,4 @@
-function [W,H]= WEDGE_recovery(input_path,output_path,output_format,normalization, options,recovery_fileName)
+function [W,H]= WEDGE_recovery(input_path,output_path,output_format,normalization, n_CPU, options,recovery_fileName)
     % this function used to recovery scRNA-seq data
 
     %input
@@ -6,6 +6,7 @@ function [W,H]= WEDGE_recovery(input_path,output_path,output_format,normalizatio
     %normalization: we normalize the total expression of each cell to 10,000,
     %and perform log-transform after adding a pseudocount of 1. 
     %default, normalization = 1;
+    %n_CPU,number of cpu, default n_CUP = 4
 
     % options.n_rank : the rank of A_norm;
     % options.lambda: the weights of  Zero elements;
@@ -19,11 +20,34 @@ function [W,H]= WEDGE_recovery(input_path,output_path,output_format,normalizatio
     %2. lambda = 'auto';  %when r <= 0.25, lambda = 0.15;when r > 0.25,
     %lambda = r (r is the rate of no zero elements).
 
-    if nargin <6
-        recovery_fileName = 'WEDGE_recovery.csv';
-    end
-    
-    
+if nargin <7
+    recovery_fileName = 'WEDGE_recovery.csv';
+end
+%%
+max_ncores = feature('numCores');
+pool_state = gcp('nocreate');           
+
+if ~exist('n_CPU', 'var') || isempty(n_CPU) || n_CPU <=0
+    n_CPU = max_ncores;
+end  
+if max_ncores < n_CPU
+  fprintf(['You requested %d CPUs,' ...
+       'but the cluster "local" has the NumWorkers property set to allow a maximum of %d CPUs.\n' ...
+       'WEDGE automatically sets Number of CPUs to %d .'], n_CPU,max_ncores,max_ncores);
+   n_CPU = max_ncores;
+end
+
+if isempty(pool_state)  
+       parpool(n_CPU);
+else
+   if n_CPU == pool_state.NumWorkers
+       fprintf('Parallel pool on local has been run and number of CPUs is %d',n_CPU);
+   else
+       delete(gcp('nocreate')) 
+       parpool(n_CPU);
+   end               
+end
+ %%   
     if ~exist('normalization', 'var') || isempty(normalization) 
         normalization =1;
     end  

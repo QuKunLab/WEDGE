@@ -1,7 +1,7 @@
 clc;
 clear;
 close all;
-input_path='./Data/Baron.csv'; %the dir of input file;
+input_path='./Data/Baron/Observed.csv'; %the dir of input file;
 %'.csv', '.tsv' and '.mtx' format is ok. Genes in rows and cells in columns.
 %If the file format is '.mtx',the input_path must end with '/', for example input_path= './Data/amount/'
 %if the filr format is '.csv' or '.tsv',  Cell and gene names are mandatory.
@@ -17,6 +17,9 @@ normalization = 1;
 %if normalization = 0, WEDGE do not normalize data.
 %default, normalization = 1, WEDGE normalizes the total expression of each cell to 10,000 and performs log-transform after adding a pseudocount of 1. 
 
+n_CPU = []; 
+%if n_CPU = [], WEDGE will use all the CPU in this computer, otherwise,
+%WEDGE use min(n_CPU, the number of CPU in this computer) CPU to impute
 
 options.n_rank = []; 
 %A positive integer, the rank of gene expression matrix; if options.n_rank = [], WEDGE will automatically estimate the rank of matrix
@@ -34,4 +37,4 @@ options.bound =[];%the minimum change value of single values when estimating the
 
 options.figure_state=0; %1 plot the change value of single values ; 0 don't plot the change value of single values . default 0;
 
-[W,H]= WEDGE_recovery(input_path,output_path,output_format,normalization, options);
+[W,H]= WEDGE_recovery(input_path,output_path,output_format,normalization, n_CPU, options);

@@ -42,6 +42,7 @@ If you are familiar with MATLAB, then please skip this section and view the [Com
 > Note: If you want to use WEDGE in Linux without desktop, please use MATLAB source code of WEDGE and view [Command-Line Tutorial](#Command-Line-Tutorial).
 ### GUI Tutorial
 Note: If using WEDGE to impute 10x data, one should select three files `matrix.mtx` , `barcodes.tsv` and `genes.tsv` at the same time, and upload them to WEDGE.
+
 <div align=center>
 <img src= './images/UI.png'  width="95%" height="50%"  />
 </div>
@@ -99,6 +100,10 @@ normalization = 1;
 options.n_rank = []; 
 %A positive integer, the rank of gene expression matrix; if options.n_rank = [], WEDGE will automatically estimate the rank of matrix
 %otherwise, WEDGE will use the value set by the user.
+
+n_CPU = []; 
+%if n_CPU = [], WEDGE will use all the CPU in this computer, otherwise,
+%WEDGE use min(n_CPU, the number of CPU in this computer) CPU to impute
 
 options.lambda=[];
 %the weights of  Zero elements;
