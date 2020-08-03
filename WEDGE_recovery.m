@@ -6,7 +6,7 @@ function [W,H]= WEDGE_recovery(input_path,output_path,output_format,normalizatio
     %normalization: we normalize the total expression of each cell to 10,000,
     %and perform log-transform after adding a pseudocount of 1. 
     %default, normalization = 1;
-    %n_CPU,number of cpu, default n_CUP = 4
+    %n_CPU,number of cpu, default use all the cpu on the computer
 
     % options.n_rank : the rank of A_norm;
     % options.lambda: the weights of  Zero elements;
@@ -100,7 +100,8 @@ end
             T = array2table(A_recovery,'RowNames',geneName,'VariableNames',U);
         catch ME
             sprintf('Warning the cell name is change')
-            T = array2table(A_recovery,'RowNames',geneName);
+            strcat('WEDGE_',U)
+            T = array2table(A_recovery,'RowNames',geneName,'VariableNames',U);
         end
         writetable(T, [output_path, recovery_fileName],'WriteRowNames',1,'WriteVariableNames',1);
     end
@@ -189,19 +190,25 @@ function [A , geneName,cellName] = read_data(path)
 %% read csv file
 if  strcmpi(path(end-2:end),'csv')
     Data_no_change = importdata(path,',',1);
-    A_source_head = Data_no_change.textdata;
-    A =Data_no_change.data;
-    
+    A_source_head = Data_no_change.textdata;    
     % Summing the expression of genes of the same name
-    [geneName,index_ing,b] = unique(A_source_head(2:end,1),'stable');
-    unique_b= unique(b);
-    A = A(index_ing,:);
-    for i = 1 : length(unique_b)
-        if sum(b == unique_b(i))>1
-            A(i,:) = sum(Data_no_change.data(b == unique_b(i),:));
-        end
-    end
     cellName = A_source_head(1,2:end);
+    [geneName,~,b] = unique(A_source_head(2:end,1),'stable');
+    clear A_source_head
+    if length(unique(b)) < length(b)
+        [index_i, index_j, value_x] = find(Data_no_change.data);
+        clear Data_no_change
+
+        index_i_new=index_i;
+        for i = 1: length(b)
+            index_i_new(index_i==i) = b(i); 
+        end
+        A = sparse(index_i_new,index_j,value_x);
+
+        clear index_i index_i_new index_j value_x
+    else
+        A = Data_no_change.data;
+    end
     return;
 end
 
@@ -209,18 +216,24 @@ end
 if  strcmpi(path(end-2:end),'tsv')
     Data_no_change = importdata(path,'\t',1);
     A_source_head = Data_no_change.textdata;
-    A =Data_no_change.data;
-
-    % Summing the expression of genes of the same name
-    [geneName,index_ing,b] = unique(A_source_head(2:end,1),'stable');
-    unique_b= unique(b);
-    A = A(index_ing,:);
-    for i = 1 : length(unique_b)
-        if sum(b == unique_b(i))>1
-            A(i,:) = sum(Data_no_change.data(b == unique_b(i),:));
-        end
-    end
+    
     cellName = A_source_head(1,2:end);
+    [geneName,~,b] = unique(A_source_head(2:end,1),'stable');
+    clear A_source_head
+    if length(unique(b)) < length(b)
+        [index_i, index_j, value_x] = find(Data_no_change.data);
+        clear Data_no_change
+
+        index_i_new=index_i;
+        for i = 1: length(b)
+            index_i_new(index_i==i) = b(i); 
+        end
+        A = sparse(index_i_new,index_j,value_x);
+
+        clear index_i index_i_new index_j value_x
+    else
+        A = Data_no_change.data;
+    end
     return
 end
 
@@ -246,16 +259,20 @@ fid = fopen([path,'/',FileName(end-1).name]);
 geneName = textscan(fid, '%s %s','delimiter', '\t');
 geneName = geneName{1,1};
 fclose(fid);
+ 
+[geneName, ~, b] = unique(geneName(2:end,1),'stable');
 
-% Sum the expression of genes of the same name
-[geneName,index_ing,b] = unique(geneName(2:end,1),'stable');
-unique_b= unique(b);
-A = A(index_ing,:);
-for i = 1 : length(unique_b)
-    if sum(b == unique_b(i))>1
-        A(i,:) = sum(Data_no_change.data(b == unique_b(i),:));
+if length(unique(b)) < length(b)
+    [index_i, index_j, value_x] = find(A);
+    clear A
+
+    index_i_new=index_i;
+    for i = 1: length(b)
+        index_i_new(index_i==i) = b(i); 
     end
+    A = sparse(index_i_new,index_j,value_x);
 end
+
 
 end
 
