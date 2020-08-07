@@ -292,8 +292,7 @@ def get_passed_time(func):
 
 def entry():
     parser = argparse.ArgumentParser()
-    path1 = "/home/math/hyl2016/NEW_DATA_GENE2000/amount_100/10x/"
-    path2 = '/home/math/hyl2016/Imputation/all_data_5W_noN/10x/'
+    path2 = '~/10x/'
     parser.add_argument('--path', type=str, default=path2, help='data directory to run')
     parser.add_argument('--times', type=int, default=1, help='run how many times')
     args = parser.parse_args()

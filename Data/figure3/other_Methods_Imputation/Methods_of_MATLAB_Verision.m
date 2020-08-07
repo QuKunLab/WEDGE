@@ -20,6 +20,11 @@ parameter = [1,1e-7,1e-1];
 tic
 dataRecovered = scrabble(data,parameter);
 toc
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %WEDGE
 clc;
