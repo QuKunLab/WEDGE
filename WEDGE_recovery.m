@@ -208,6 +208,9 @@ if  strcmpi(path(end-2:end),'csv')
         clear index_i index_i_new index_j value_x
     else
         A = Data_no_change.data;
+        A_row_sum = sum(A,2);
+        A = A(A_row_sum>0,:);
+        geneName = geneName(A_row_sum>0);
     end
     return;
 end
@@ -233,6 +236,9 @@ if  strcmpi(path(end-2:end),'tsv')
         clear index_i index_i_new index_j value_x
     else
         A = Data_no_change.data;
+        A_row_sum = sum(A,2);
+        A = A(A_row_sum>0,:);
+        geneName = geneName(A_row_sum>0);
     end
     return
 end
@@ -271,6 +277,9 @@ if length(unique(b)) < length(b)
         index_i_new(index_i==i) = b(i); 
     end
     A = sparse(index_i_new,index_j,value_x);
+    A_row_sum = sum(A,2);
+    A = A(A_row_sum>0,:);
+    geneName = geneName(A_row_sum>0);
 end
 
 
