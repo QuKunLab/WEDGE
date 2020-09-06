@@ -1,2 +1,2 @@
 #
-dca Mouse5W.h5ad ./res/ --threads=72 --no-saveweights
+dca Mouse5W.csv ./res/ --threads=72 --no-saveweights

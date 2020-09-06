@@ -243,30 +243,30 @@ if  strcmpi(path(end-2:end),'tsv')
     return
 end
 
-%% read mtx file
-FileName = dir(path);
-if ~strcmp(FileName(end).name(end-3:end) , '.mtx')
-    sprintf('the format of input file is .csv, .tsv or .mtx')
+%% read 10x data
+try
+    fid = fopen([path,'/','barcodes.tsv']);
+    cellName = textscan(fid, '%s','delimiter', '\t');
+    fclose(fid);
+    cellName = cellName{1};
+
+    fid = fopen([path,'/','genes.tsv']);
+    geneName = textscan(fid, '%s %s','delimiter', '\t');
+    geneName = geneName{1,1};
+    fclose(fid);
+
+    fileID = fopen([path,'/','matrix.mtx']);
+    C = textscan(fileID,'%n %n %n','CommentStyle','%');
+    fclose(fileID);
+    A = sparse(C{1}(2:end),C{2}(2:end),C{3}(2:end),C{1}(1),C{2}(1));
+    clear C;
+catch
+    sprintf('the format of input file is .csv, .tsv or 10x path')
     return;
 end
 
-fid = fopen([path,'/',FileName(end-2).name]);
-cellName = textscan(fid, '%s','delimiter', '\t');
-fclose(fid);
-cellName = cellName{1};
-
-fileID = fopen([path,'/',FileName(end).name]);
-C = textscan(fileID,'%n %n %n','CommentStyle','%');
-fclose(fileID);
-A = sparse(C{1}(2:end),C{2}(2:end),C{3}(2:end),C{1}(1),C{2}(1));
-clear C;
-
-fid = fopen([path,'/',FileName(end-1).name]);
-geneName = textscan(fid, '%s %s','delimiter', '\t');
-geneName = geneName{1,1};
-fclose(fid);
  
-[geneName, ~, b] = unique(geneName(2:end,1),'stable');
+[geneName, ~, b] = unique(geneName(1:end,1),'stable');
 
 if length(unique(b)) < length(b)
     [index_i, index_j, value_x] = find(A);
