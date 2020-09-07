@@ -6,11 +6,11 @@ input_path='./Data/Baron/Observed.csv'; %the dir of input file;
 %If the file format is '.mtx',the input_path must end with '/', for example input_path= './Data/amount/'
 %if the filr format is '.csv' or '.tsv',  Cell and gene names are mandatory.
 
-output_format =[] ;%the saver format of recovery data. 
+output_format =['W_H'] ;%the saver format of recovery data. 
 %if you set output_format = 'W_H', the output is W and H, the recovery data is equal to W*H;
 %the default is output_format =[]; save recovery data as WEDGE_recovery.csv, rows is genes and columns is cells.
 
-output_path = '';%the dir of output file, for example './res/'. 
+output_path = './res/';%the dir of output file, for example './res/'. 
 %default output_path =[]; In this time if output_format = 'W_H', then output_path ='./res/'; otherwise, output_path ='./';
 
 normalization = 1; 
