@@ -124,7 +124,7 @@ options.figure_state=0; %1 plot the change value of single values ; 0 don't plot
 Now, The last thing you have to do is to invoke the `WEDGE_recovery()` function. 
 
 ```
-[W,H]= WEDGE_recovery(input_path,output_path,output_format,normalization, options);
+[W,H]= WEDGE_recovery(input_path,output_path,output_format,normalization, n_CPU, options);
 ```
 
 ### Help
