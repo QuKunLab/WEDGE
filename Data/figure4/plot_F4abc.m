@@ -1,6 +1,6 @@
 %%
 %Jaccard Index
-path = "./WEDGE/Data/figure4/";
+path = "./";
 T = readtable(path + "/Ref_Label.csv",'Delimiter',',','ReadVariableNames',true);
 Ref=T.x;
 T = readtable(path + "/WEDGE_Label.csv",'Delimiter',',','ReadVariableNames',true);
@@ -20,15 +20,22 @@ for i =1:length(unique(Ref_m))
     end
 end
 
+A = A';
 id_v =[];
-for i = 1:size(A,1)
-    id = find(A(i,:)==max(A(i,:)));
+for i = 1:size(A,2)
+    id = find(A(:,i)==max(A(:,i)));
     id_v = [id_v,id];
 end
+B = A(unique(id_v,"stable"),:);
 
-id = [unique(id_v,"stable"),setdiff(1:size(A,2),unique(id_v,"stable"))];
-cmap = colormap("parula");
-h = heatmap(A(:,id),'Colormap',cmap);
+id = [1,7,4,9,2,3,5,12,6,10,8,11,13,15,17,21,19,14,20,18,22];
+id_ = [1,2,3,4,5,6,7,8,9,18,10,11,12,13,14,17,15,16];
+min = [249, 249, 249]/255;
+d = [62, 0, 125]/255 - [218, 232, 245]/255;
+cmap = [0:255]'/255;
+cmap = [min(1) + d(1)*cmap, min(2) + d(2)*cmap, min(3) + d(3)*cmap];
+B = A(:,id);
+h = heatmap(B(id_,:),'Colormap',cmap);
 C = {};
 for i = 1:length(id)
     C{i} = num2str(id(i));

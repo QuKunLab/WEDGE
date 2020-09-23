@@ -87,11 +87,19 @@ end
     if strcmpi(output_format,'W_H')
         csvwrite([output_path,'W.csv'],W);
         csvwrite([output_path,'H.csv'],H);
-        T = table(geneName);
-        writetable(T, [output_path,'geneName.csv'],'WriteRowNames',0,'WriteVariableNames',0);
+        if size(geneName,2)>1
+            T = table(geneName{1,1},geneName{1,2});
+        else
+            T = table(geneName);
+        end       
+        
+        writetable(T, [output_path,'geneName.csv'],'WriteRowNames',0,'WriteVariableNames',0,'Delimiter','\t');
         T = table(cellName);
         writetable(T, [output_path,'cellName.csv'],'WriteRowNames',0,'WriteVariableNames',0);        
     else
+        if size(geneName,2)>1
+            geneName = geneName{1,1};
+        end
         U = matlab.lang.makeUniqueStrings(cellName);
         A_recovery = W*H;
         n_col = size(A_recovery,2);
@@ -204,13 +212,9 @@ if  strcmpi(path(end-2:end),'csv')
             index_i_new(index_i==i) = b(i); 
         end
         A = sparse(index_i_new,index_j,value_x);
-
         clear index_i index_i_new index_j value_x
     else
         A = Data_no_change.data;
-        A_row_sum = sum(A,2);
-        A = A(A_row_sum>0,:);
-        geneName = geneName(A_row_sum>0);
     end
     return;
 end
@@ -226,19 +230,14 @@ if  strcmpi(path(end-2:end),'tsv')
     if length(unique(b)) < length(b)
         [index_i, index_j, value_x] = find(Data_no_change.data);
         clear Data_no_change
-
         index_i_new=index_i;
         for i = 1: length(b)
             index_i_new(index_i==i) = b(i); 
         end
         A = sparse(index_i_new,index_j,value_x);
-
         clear index_i index_i_new index_j value_x
     else
         A = Data_no_change.data;
-        A_row_sum = sum(A,2);
-        A = A(A_row_sum>0,:);
-        geneName = geneName(A_row_sum>0);
     end
     return
 end
@@ -251,8 +250,8 @@ try
     cellName = cellName{1};
 
     fid = fopen([path,'/','genes.tsv']);
-    geneName = textscan(fid, '%s %s','delimiter', '\t');
-    geneName = geneName{1,1};
+    geneName_2 = textscan(fid, '%s %s','delimiter', '\t');
+    geneName = geneName_2{1,1};
     fclose(fid);
 
     fileID = fopen([path,'/','matrix.mtx']);
@@ -265,24 +264,20 @@ catch
     return;
 end
 
- 
 [geneName, ~, b] = unique(geneName(1:end,1),'stable');
 
 if length(unique(b)) < length(b)
     [index_i, index_j, value_x] = find(A);
     clear A
-    
     index_i_new=index_i;
     for i = 1: length(b)
         index_i_new(index_i==i) = b(i); 
     end
     A = sparse(index_i_new,index_j,value_x);
-    A_row_sum = sum(A,2);
-    A = A(A_row_sum>0,:);
-    geneName = geneName(A_row_sum>0);
 end
-
-
+    gene_ID = ismember(geneName_2{1,1}, geneName);
+    gene_ing = geneName_2{1,2};
+    geneName = {geneName, gene_ing(gene_ID)};
 end
 
 function [initial_W,ReducedDimension] = SNMF_initial(A,n_pca,bound ,figure_state)
