@@ -14,11 +14,10 @@ def load_WH2anndata(_dir):
     print('data loaded!')
     cellnames = open(join(_dir, 'cellName.csv'), 'r').readlines()
     cellnames = [item.strip('\n') for item in cellnames]
-    assert len(cellnames) == H_df.shape[1]
+    assert len(cellnames) == H_df.shape[1],'cell number is not equal'
 
-    genenames = open(join(_dir, 'geneName.csv'), 'r').readlines()
-    genenames = [item.strip('\n') for item in genenames]
-    assert len(genenames) == W_df.shape[0]
+    gene_names = pd.read_csv(join(_dir, 'geneName.csv'), header=None, index_col=0)
+    assert len(genenames) == W_df.shape[0],'gene number is not equal'
 
     mtx = np.dot(W_df, H_df)
-    return sc.AnnData(mtx.T, obs=pd.DataFrame(index=cellnames), var=pd.DataFrame(index=genenames))
+    return sc.AnnData(mtx.T, obs=pd.DataFrame(index=cellnames), var=gene_names)
