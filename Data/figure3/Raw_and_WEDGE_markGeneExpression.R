@@ -6,7 +6,7 @@ library(readr)
 library(Matrix)
 library(ggplot2)
 library(SparseM)
-setwd("G:/program1/10x_data/")
+setwd("G:/program1/10x_data/") # the path of WEDGE.Robj and Raw.Robj
 
 #18 B Cell
 load("./WEDGE.Robj")
@@ -79,7 +79,7 @@ attr(tiss_Raw_ing@data,"dimnames") = geneName
 #other gene list of Figure 3 (Kleiman, E. et al.)
 ########################################################################################################################
 # reading gene list (FO)
-FO<-read.csv(file="./genelist/fig3/FO_Up.txt", header = TRUE, sep = "\t")
+FO<-read.csv(file="./genelist/Fig3/FO_Up.txt", header = TRUE, sep = "\t")
 FO = as.character(FO$X)
 #remove undetected gene
 gene_id <- FO %in% dim[[1]]
@@ -95,7 +95,7 @@ for(i in gene_id)
 FO_new = as.character(FO_new)
 #####################################
 # reading gene list (MZ)
-MZ<-read.csv(file="./genelist/fig3/MZ_Up.txt", header = TRUE, sep = "\t")
+MZ<-read.csv(file="./genelist/Fig3/MZ_Up.txt", header = TRUE, sep = "\t")
 MZ = as.character(MZ$X)
 #remove undetected gene
 gene_id <- MZ %in% dim[[1]]
@@ -169,7 +169,7 @@ cat(" p_Fo_Raw =",p_Fo_Raw,"\n p_Fo_WEDGE =",p_Fo_WEDGE,"\n p_MZ_Raw =",p_MZ_Raw
 ##gene list of Supplementary Figure 8 a-b (Newman, R. et al.)
 ##################################################################################################################
 # reading gene list (FO)
-FO<-read.csv(file="./genelist/sf/WT_FO_cell_SYMBOL.txt", header = TRUE, sep = ",")
+FO<-read.csv(file="./genelist/Supplementary_Fig8/WT_FO_cell_SYMBOL.txt", header = TRUE, sep = ",")
 FO = as.character(FO$SYMBOL)
 #remove undetected gene
 gene_id <- FO %in% dim[[1]]
@@ -185,7 +185,7 @@ for(i in gene_id)
 FO_new = as.character(FO_new)
 #####################################
 # reading gene list (MZ)
-MZ<-read.csv(file="./genelist/sf//WT_MZ_cell_SYMBOL.txt", header = TRUE)
+MZ<-read.csv(file="./genelist/Supplementary_Fig8//WT_MZ_cell_SYMBOL.txt", header = TRUE)
 MZ = as.character(MZ$SYMBOL)
 #remove undetected gene
 gene_id <- MZ %in% dim[[1]]

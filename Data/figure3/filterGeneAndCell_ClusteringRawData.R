@@ -1,11 +1,11 @@
-.libPaths("G:/10x_data/conda_seurat/lib/R/library")
+.libPaths("G:/10x_data/conda_seurat/lib/R/library") #The installation path of seurat 2.0
 library(Seurat)
 library(dplyr)
 library(stringr)
 library(readr)
 library(Matrix)
 
-setwd("G:/10x_data/Mouse_Altas")
+setwd("G:/10x_data/Mouse_Altas") #path of Tabula Muris dataset
 
 library(here)
 

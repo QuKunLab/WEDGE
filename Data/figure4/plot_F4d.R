@@ -8,7 +8,6 @@ setwd("path_of_imputed_or_raw_data")
 cellNames = read.csv("./WEDGE/Data/figure4/cellNames.csv",row.names = 1)
 geneNames = read.csv("./WEDGE/Data/figure4/geneNames.csv",row.names = 1)
 
-method = "WEDGE"
 W<-read.csv('./WEDGE/W.csv',header = F)
 H<-read.csv('./WEDGE/H.csv',header = F)
 A = as.matrix(W)%*%as.matrix(H)
