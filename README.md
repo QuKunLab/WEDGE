@@ -22,7 +22,7 @@ If you are familiar with MATLAB, then please skip this section and view the [Com
 
 | WEDGE Release | Windows    | Linux desktop     | Mac                         |
 | ------------- | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
-| Version_1.0.1 | [64-bit](https://git.ustc.edu.cn/hyl2016/wedge_app/-/raw/master/WEDGE_win_1.1.exe?inline=false) | [64-bit](https://git.ustc.edu.cn/hyl2016/wedge_app/-/raw/master/WEDGE_linux_1.1.zip?inline=false) | [64-bit](http://galaxy.ustc.edu.cn:30803/liunianping/WEDGE/WEDGE_MacOS_1.0.1.zip) |
+| Version_1.0.1 | [64-bit](https://git.ustc.edu.cn/hyl2016/wedge_app/-/raw/master/WEDGE_win_1.1.exe?inline=false) | [64-bit](https://git.ustc.edu.cn/hyl2016/wedge_app/-/raw/master/WEDGE_linux_1.1.zip?inline=false) | [64-bit](https://git.ustc.edu.cn/hyl2016/wedge_app/-/raw/master/WEDGE_MacOS_1.1.zip?inline=false) |
 
 - Windows & Mac: Double-click the installer to install WEDGE and select the default options for each step.
 
