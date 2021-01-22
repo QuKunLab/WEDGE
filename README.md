@@ -1,20 +1,48 @@
 
-<!-- TOC -->
-- [WEDGE](#wedge)
+- [Python versions](#python-versions)
+    - [Required packages](#required-packages)
+    - [Tutorial](#tutorial)
+- [MATLAB version](#matlab-version)
     - [Installation](#installation)
     - [GUI Tutorial](#gui-tutorial)
     - [Command-Line Tutorial](#command-line-tutorial)
         - [Preprocessing](#preprocessing)
         - [Imputation](#imputation)
-    - [Help](#help)
-<!-- TOC -->
-
+- [Help](#help)
 
 WEDGE
 ===
 ![](./images/WLF.png)
 
-WEDGE is a weighted low-rank matrix completion algorithm for recovering  scRNA-seq gene expression data with high dropout rate.
+WEDGE is a biased low-rank matrix completion algorithm for recovering  scRNA-seq gene expression data with high dropout rate.
+
+## Python versions
+  WEDGE's python version currently only supports single-core mode, and the multi-core version will be released soon. If you want to use the multi-core version or are familiar with MATLAB, we recommend that you use WEDGE's MATLAB version
+
+### Required packages
+
+    pip3 install numpy==1.19.3
+    pip3 install pandas
+    pip3 install scipy
+
+### Tutorial
+For a detailed tutorial, please refer to [test_WEDGE.ipynb](./WEDGE_Python/test_WEDGE.ipynb)
+
+    Attention:
+    Linux: WEDGE was compiled under the environment of Ubuntu20.04 and python3.8.6. If you want to use WEDGE in other environments, please recompile "NNLS.cpp" as follows:
+        1. pip3 install pybind11
+        2. Modify the path in the file "CMakeLists.txt" based on the path of pybind11
+        3. mkdir build
+        4. cd build
+        5. cmake ..
+        6. make
+    Windows: WEDGE was compiled under the environment of Windows10, vs2017 and python 3.8.6. If you want to use WEDGE in other environments, please recompile "NNLS.cpp" as follows:
+        1. pip3 install pybind11
+        2. Install Visual Studio(https://visualstudio.microsoft.com/zh-hans/vs)
+        3. Modify the path in the file "setup.py"
+        4. Execute "python .\setup.py build_ext --inplace" to recompile NNLS.cpp.
+
+## MATLAB version
 
 ### Installation
 
