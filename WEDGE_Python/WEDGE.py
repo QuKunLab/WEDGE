@@ -173,7 +173,7 @@ class WEDGE:
             return
         # read 10x data
         if self.input_path[-1]=='/':
-            if os.path.exists(self.input_path+'/genes.tsv'):
+            if os.path.exists(self.input_path+'genes.tsv'):
                 geneName = pd.read_csv(
                     filepath_or_buffer=self.input_path+'genes.tsv',
                     sep='\t',
