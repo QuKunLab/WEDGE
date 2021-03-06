@@ -173,33 +173,33 @@ class WEDGE:
             return
         # read 10x data
         if self.input_path[-1]=='/':
-            if os.path.exists(self.input_path+'/genes.tsv'):
+            if os.path.exists(self.input_path+'genes.tsv'):
                 geneName = pd.read_csv(
-                    filepath_or_buffer=self.input_path+'/genes.tsv',
+                    filepath_or_buffer=self.input_path+'genes.tsv',
                     sep='\t',
                     header=None,
                     index_col=None)
                 self.geneName = geneName.values
             else:
-                print('Do not find the genes.tsv in: '+ self.input_path+'/genes.tsv')
+                print('Do not find the genes.tsv in: '+ self.input_path+'genes.tsv')
                 return 
 
-            if os.path.exists(self.input_path+'/barcodes.tsv'):
+            if os.path.exists(self.input_path+'barcodes.tsv'):
                 cellName = pd.read_csv(
-                    filepath_or_buffer=self.input_path+'/barcodes.tsv',
+                    filepath_or_buffer=self.input_path+'barcodes.tsv',
                     sep='\t',
                     header=None,
                     index_col=None)
                 self.cellName = cellName.values[:,0]
             else:
-                print('Do not find the barcodes.tsv in: '+ self.input_path+'/barcodes.tsv')
+                print('Do not find the barcodes.tsv in: '+ self.input_path+'barcodes.tsv')
                 return
 
-            if os.path.exists(self.input_path+'/matrix.mtx'):
-                self.Initial_Data = mmread(self.input_path+'/matrix.mtx')
+            if os.path.exists(self.input_path+'matrix.mtx'):
+                self.Initial_Data = mmread(self.input_path+'matrix.mtx')
 
             else:
-                print('Do not find the matrix.mtx in: '+ self.input_path +'/matrix.mtx')
+                print('Do not find the matrix.mtx in: '+ self.input_path +'matrix.mtx')
                 return 
             
             _, c, b = np.unique(self.geneName[:,0],return_index= True, return_inverse=True)
